@@ -1,10 +1,14 @@
-s = "pwwkew"
-output = ""
-for char in s: #k
-    if char not in output: #k
-        output += char #output = pwk
-        
+s = "abcabcbb"
+output = []
+word = ""
+if s == "":
+    print(0)
+else:
+    for char in s:
+        if char in word:
+            word = word[word.index(char) + 1:]
+        word += char
+        output.append(word)
 
-    if output not in s:
-        output = char #output = 
-print(output)
+    print(len(max(output, key=(len))))
+    # print(len(max(output)))

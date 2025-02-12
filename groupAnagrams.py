@@ -1,3 +1,5 @@
+#group the anagrams together 
+
 def groupAnagrams(strs):
     anagram_dict = {} 
     

@@ -7,6 +7,7 @@
 #                   return false
 #           return true
 
+
 board = [["A", "B", "C", "E"],
         ["S", "F", "C", "S"],
         ["A", "D", "E", "E"]]
@@ -20,3 +21,4 @@ for i in range(0, len(board[0]+1)):
                 if letter != board[i+1][j] or letter != board[i][j+1]:
                     print("False")
             print("True")
+#

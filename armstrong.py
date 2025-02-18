@@ -1,3 +1,5 @@
+#armstrong number 
+
 num = 153
 last_digit = num%10
 str_num = str(num)

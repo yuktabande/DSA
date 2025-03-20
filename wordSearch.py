@@ -1,24 +1,37 @@
-#given an array; to check if the string exists, vertically or horizontally adj
-#for i in range 
-#   for j in range 
-#       if array[i][j] == string's 1st letter:
-#           for letter in string in range 1,n:
-#               if letter is not array[i+1][j] or array[i][j+1]:
-#                   return false
-#           return true
+def exist(board, word):
+    rows, cols = len(board), len(board[0])
+    
+    def dfs(r, c, index):
+        if index == len(word):  # If we matched all letters
+            return True
+        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[index]:
+            return False
+        
+        # Mark the cell as visited by replacing it temporarily
+        temp = board[r][c]
+        board[r][c] = "#"  # Mark as visited
+        
+        # Explore in four directions: right, left, down, up
+        found = (dfs(r+1, c, index+1) or 
+                 dfs(r-1, c, index+1) or 
+                 dfs(r, c+1, index+1) or 
+                 dfs(r, c-1, index+1))
+        
+        # Restore the cell
+        board[r][c] = temp
+        return found
+    
+    for i in range(rows):
+        for j in range(cols):
+            if board[i][j] == word[0] and dfs(i, j, 0):  # Start DFS if first letter matches
+                return True
+    
+    return False
 
-
+# Example Usage
 board = [["A", "B", "C", "E"],
-        ["S", "F", "C", "S"],
-        ["A", "D", "E", "E"]]
+         ["S", "F", "C", "S"],
+         ["A", "D", "E", "E"]]
 
 word = "ABCCED"
-total_elements = sum(len(row) for row in board)
-for i in range(0, len(board[0]+1)):
-    for j in range(i, len(board[0]+1)):
-        if board[i][j] == word[0]:
-            for letter in word:
-                if letter != board[i+1][j] or letter != board[i][j+1]:
-                    print("False")
-            print("True")
-#
+print(exist(board, word))  # Output: True
